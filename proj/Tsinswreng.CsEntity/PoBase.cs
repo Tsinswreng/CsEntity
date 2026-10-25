@@ -1,19 +1,15 @@
 namespace Tsinswreng.CsEntity;
 
+using Tsinswreng.CsCore;
 using Tsinswreng.CsTempus;
 
-public interface IBasePoBase{
+public interface IBasePoBase
+	:I_DelAt
+{
 	[Doc("存入數據庫之時")]
 	public UnixMs DbCreatedAt { get; set; }
 	[Doc("在數據庫中被更新之時")]
 	public UnixMs DbUpdatedAt { get; set; }
-
-	[Doc($$"""
-	軟刪時間。`0` 表示未刪，非 `0` 表示已刪。
-	*為何用時間而不是布爾*：刪除時刻本身是排錯與審計所需的信息；
-	而且「未刪」用 0 表示，索引條件 `DelAt = 0` 可以直接走索引。
-	""")]
-	public UnixMs DelAt { get; set; }
 	public object ShallowCloneSelf();
 }
 
@@ -106,3 +102,28 @@ public class BasePoBase : IBasePoBase {
 
 }
 
+
+
+public static class IBasePoBaseExtn{
+	extension<T>(T z)
+		where T:IBasePoBase
+	{
+		
+	}
+	
+	public static bool IsDeleted(this IBasePoBase z){
+		return !z.DelAt.IsNullOrDefault();
+	}
+	
+	[Doc(@$"從業務層之 修改時間 與 被軟先除之時間 取 最晚近者。
+	因 軟刪除實體時、實體的 {nameof(IBizCreateUpdateTime.BizUpdatedAt)}可能不變。
+	")]
+	public static UnixMs GetNewestBizUpdOrDelTime<TSelf>(
+		this TSelf z
+	)where TSelf:IBizCreateUpdateTime, I_DelAt{
+		i64 u = z.BizUpdatedAt;
+		i64 d = z.DelAt;
+		return Math.Max(u,d);
+	}
+	
+}
