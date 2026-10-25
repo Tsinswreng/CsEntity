@@ -13,6 +13,7 @@
 	<ItemGroup>
 		<ProjectReference Include="../../../Tsinswreng.CsCore/proj/Tsinswreng.CsCore/Tsinswreng.CsCore.csproj"/>
 		<ProjectReference Include="../../../Tsinswreng.CsSql/proj/Tsinswreng.CsSql/Tsinswreng.CsSql.csproj"/>
+		<ProjectReference Include="../../../Tsinswreng.CsU128Id/proj/Tsinswreng.CsU128Id/Tsinswreng.CsU128Id.csproj"/>
 		<ProjectReference Include="../../../Tsinswreng.CsTempus/proj/Tsinswreng.CsTempus/Tsinswreng.CsTempus.csproj"/>
 	</ItemGroup>
 	
