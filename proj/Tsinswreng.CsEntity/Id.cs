@@ -10,7 +10,7 @@ public partial interface IStrongId<T>: I_Value<T>{
 }
 
 [Doc("UInt128 Id 標記接口")]
-public partial interface IIdUInt128
+public partial interface IIdU128
 	:IStrongId<UInt128>
 {
 
@@ -18,7 +18,7 @@ public partial interface IIdUInt128
 
 public static class IIdU128Extn{
 	extension<T>(T z)
-		where T:struct, IIdUInt128
+		where T:struct, IIdU128
 	{
 		public static T Zero => default!;
 		public static T FromByteArr(byte[] bytes){
