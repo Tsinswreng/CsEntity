@@ -90,6 +90,7 @@ public static class IBizCreateUpdateTimeExtn{
 ]
 """)]
 public class BasePoBase : IBasePoBase {
+	
 	public UnixMs DbCreatedAt { get; set; } = new();
 
 	public UnixMs DbUpdatedAt { get; set; } = new();
