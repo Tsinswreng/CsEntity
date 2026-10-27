@@ -17,9 +17,9 @@ using Tsinswreng.CsU128Id;
 就覆蓋全部；格式則沿用 CsEntity 的既有約定——`ToString()` 給 Low64Base、
 {{nameof(U128Id.Low64BaseToUInt128)}} 還原。
 
-*誰註冊它*：`proj/TswgCsTpl.Scripts` 的 `GenAppJsonCtx` 掃
-{{nameof(Tsinswreng.CsEntity.IIdU128)}} 的實作者，逐個產 `new JsonConvtrIdU128<IdXxx>()`
-掛進 AppJsonCtx 的轉換器清單。故新增 Id 時不必手動登記。
+*誰註冊它*：各應用的生成器（例如模板的 `GenAppJsonCtx`）掃
+{{nameof(Tsinswreng.CsEntity.IIdU128)}} 的實作者，逐個產 `new JsonConvtrU128Id<IdXxx>()`
+掛進自己的 `JsonSerializerOptions.Converters`。故新增 Id 時不必手動登記。
 
 #Eg[
 	```cs
