@@ -24,7 +24,7 @@ using Tsinswreng.CsCore;
 	```
 ]
 """)]
-public sealed class JsonConvtrI_Value<T, TPrim> : JsonConverter<T>
+public sealed class JsonConvtrBare<T, TPrim> : JsonConverter<T>
 	where T : struct, I_Value<TPrim>
 {
 	[Doc($$"""
